@@ -445,7 +445,7 @@ def alarm(df,symbol,watch_list, current_profit_pct, amount_older_than_one_year, 
        #     }    
         
         if current_seven_days_slope_pct < (seven_day_price_change * -1):
-            alarm_message1 = "Potential sell {} \nPrice': {} % \nEMA': {} \nRSI14: {} \nMOM10': {} \nVWMA20': {} \n{} \n#Negative-7 ".format(symbol,round(current_seven_days_slope_pct,2),dEMA_pct, RSI14, dMom10_pct, dVWMA20_pct,alarm_message_add)
+            alarm_message1 = "Potential sell {} \nPrice7': {} % \nEMA': {} \nRSI14: {} \nMOM10': {} \nVWMA20': {} \n{} \n#Negative-7 ".format(symbol,round(current_seven_days_slope_pct,2),dEMA_pct, RSI14, dMom10_pct, dVWMA20_pct,alarm_message_add)
             alarm_message2 = ", ".join(df['Price'].tail(7).round(1).astype(str))
             alarm_message =  alarm_message1 + '\n' + alarm_message2
             alarm_symbol = ">&#9679;"
@@ -474,7 +474,7 @@ def alarm(df,symbol,watch_list, current_profit_pct, amount_older_than_one_year, 
         #    }
 
         if current_seven_days_slope_pct > seven_day_price_change:
-            alarm_message1 = "Potential buy {} \nPrice': {} % \nEMA': {} \nRSI14: {} \nMOM10': {} \nVWMA20': {} \n#Positiv-7 ".format(symbol,round(current_seven_days_slope_pct,2),dEMA_pct, RSI14, dMom10_pct, dVWMA20_pct)
+            alarm_message1 = "Potential buy {} \nPrice7': {} % \nEMA': {} \nRSI14: {} \nMOM10': {} \nVWMA20': {} \n#Positiv-7 ".format(symbol,round(current_seven_days_slope_pct,2),dEMA_pct, RSI14, dMom10_pct, dVWMA20_pct)
             alarm_message2 = ", ".join(df['Price'].tail(7).round(1).astype(str))
             alarm_message =  alarm_message1 + '\n' + alarm_message2
             alarm_symbol = ">&#9679;"
