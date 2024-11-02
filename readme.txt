@@ -1,4 +1,4 @@
-# Crypto and Stock Analyzer
+# Crypto and Stock Alert
 
 ## Overview
 
