@@ -18,7 +18,7 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
 - classes.py:               Contains the `crypto_stock` class, which manages individual crypto or stock entities, stores transaction data, and processes alarms.
 - func.py:                  Utility functions for data retrieval, indicator calculations, alarm handling, and image generation.
 - main.py:                  The main script that orchestrates the data analysis process, schedules tasks, and manages notifications.
-- config.ini:               Contains a crypto and stock list, alert limits and the API key. Not included in the GitHub structure.
+- config.ini:               Contains a crypto and stock list, alert limits and the API key. Not included in the GitHub structure. Please create this file with the information below.
 
 ## Installation Dependencies
 
