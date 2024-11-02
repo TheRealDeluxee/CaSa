@@ -53,19 +53,19 @@ token = YOUR_PUSHOVER_TOKEN
 user = YOUR_PUSHOVER_USER_KEY
 
 [alarm]
-one_day_price_change = 5
-seven_day_price_change = 15
-one_day_profit_limit = 2
-previous_alarm_change = 3
+one_day_price_change = 5      #Sets the threshold for a one-day price change alarm in %.
+seven_day_price_change = 15   #Sets the threshold for a seven-day price change alarm in %.
+one_day_profit_limit = 2      #This is a profitability threshold for a one-day period.
+previous_alarm_change = 3     #This parameter defines the minimum change required between consecutive alarm triggers.
 
 [crypto]
-bitcoin;Bitcoin;1000,0.05,01/01/2022 #Standard Mode: API ID https://www.coingecko.com/; Displayed name; Investment in €, Quanity
-matic-network = Polygon; 1 , 1, 1 #Watch list mode
+bitcoin;Bitcoin;1000,0.05,01/01/2022   #Standard Mode: API ID https://www.coingecko.com/; Displayed name; Investment in €, Quanity
+matic-network = Polygon; 1 , 1, 1      #Watch list mode
 
 
 [stocks]
-AAPL;Apple;1000,10,01/01/2022 #Standard Mode: EURO-Symbol https://finance.yahoo.com/; Displayed name; Investment in €, Quanity
-LHA.DE = Lufthansa; 1, 1, 1 #Watch list mode
+AAPL;Apple;1000,10,01/01/2022          #Standard Mode: EURO-Symbol https://finance.yahoo.com/; Displayed name; Investment in €, Quanity
+LHA.DE = Lufthansa; 1, 1, 1            #Watch list mode
 
 - **Crypto and Stocks Sections**: Each entry contains the symbol, name, and transactions in the format `amount,quantity,date`.
 
