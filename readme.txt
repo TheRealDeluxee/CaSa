@@ -79,7 +79,3 @@ LHA.DE = Lufthansa; 1, 1, 1            #Watch list mode
 ## License
 
 This project is licensed under the MIT License. 
-
----
-
-This README should cover the essential details for running, configuring, and understanding the project’s structure and functionalities. Let me know if you'd like to add or adjust any details.
