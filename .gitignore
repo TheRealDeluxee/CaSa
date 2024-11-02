@@ -1,0 +1,10 @@
+/.idea
+/.pytest_cache
+/.vscode
+/config.ini
+/conftest.py
+/logfile.txt
+/plots
+/tests
+/venv
+/__pycache__
