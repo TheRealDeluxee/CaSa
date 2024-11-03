@@ -10,18 +10,17 @@ import sys
 import subprocess
 
 class CryptoStockManager:
-    def __init__(self, config_file_path, test_mode=False, output_dir='plots'):
+    def __init__(self, config_file_path, output_dir='plots'):
+        # Initialize main attributes for each crypto or stock item
         self.config_file_path = config_file_path
-        self.test_mode = test_mode
+        self.test_mode = 0
         self.output_dir = output_dir
         self.df_crypto_hd = pd.DataFrame(columns=['Name', 'Piece [€]', 'Profit [€]', 'Profit [%]', '7 days [%]', '1 day [%]', 'dEMA [%]', 'Rating'])
         self.df_stock_hd = pd.DataFrame(columns=['Name', 'Piece [€]', 'Profit [€]', 'Profit [%]', '7 days [%]', '1 day [%]', 'dEMA [%]', 'Rating'])
         self.df_crypto_hh = pd.DataFrame(columns=['Name', 'Piece [€]', 'Profit [€]', 'Profit [%]', '7 Hours [%]', '1 Hour [%]', 'dEMA [%]', 'Rating'])
         self.df_stock_hh = pd.DataFrame(columns=['Name', 'Piece [€]', 'Profit [€]', 'Profit [%]', '7 Hours [%]', '1 Hour [%]', 'dEMA [%]', 'Rating'])
-
         self.crypto_items = []
         self.stock_items = []
-
         self.stock_update = False
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)
@@ -32,29 +31,30 @@ class CryptoStockManager:
         self.stock_items = []
         config = configparser.ConfigParser()
         if not config.read(self.config_file_path):
-            raise FileNotFoundError(f"Die INI-Datei '{self.config_file_path}' konnte nicht gefunden oder geladen werden.")
+            raise FileNotFoundError(f"The INI file '{self.config_file_path}' could not be found or loaded.")
 
         try:
             func.token_pushover = config.get('pushover', 'token')
             func.user_pushover = config.get('pushover', 'user')
+            self.test_mode = int(config.get('alarm', 'test_mode'))
             func.one_day_price_change = int(config.get('alarm', 'one_day_price_change'))
             func.seven_day_price_change = int(config.get('alarm', 'seven_day_price_change'))
             func.one_day_profit_limit = int(config.get('alarm', 'one_day_profit_limit'))
             self.previous_alarm_change = int(config.get('alarm', 'previous_alarm_change'))
         except (configparser.NoSectionError, configparser.NoOptionError) as e:
-            print(f"Fehler in der Konfiguration: {e}")
+            print(f"Error in the configuration: {e}")
 
         if "crypto" in config.sections():
             crypto_config_items = config.items("crypto")
             self.load_crypto_items(crypto_config_items)
         else:
-            print("Fehler: Abschnitt 'crypto' fehlt in der INI-Datei.")
+            print("Error: Section 'crypto' is missing in the INI file.")
 
         if "stocks" in config.sections():
             stock_config_items = config.items("stocks")
             self.load_stock_items(stock_config_items)
         else:
-            print("Fehler: Abschnitt 'stocks' fehlt in der INI-Datei.")
+            print("Error: Section 'stocks' is missing in the INI file.")
 
     def load_crypto_items(self, crypto_config_items):
         for crypto, transactions in crypto_config_items:
@@ -71,9 +71,9 @@ class CryptoStockManager:
                         date = date_str.strip()
                         crypto_obj.buy(spend, quantity, date)
                     except ValueError:
-                        print(f"Fehler beim Parsen von spend oder quantity für {name}")
+                        print(f"Error when parsing spend or quantity for {name}")
             except ValueError:
-                print(f"Fehler beim Parsen der Transaktionsdaten für {crypto}")
+                print(f"Error when parsing spend or quantity for {crypto}")
 
     def load_stock_items(self, stock_config_items):
         for stock, transactions in stock_config_items:
@@ -90,9 +90,9 @@ class CryptoStockManager:
                         date = date_str.strip()
                         stock_obj.buy(spend, quantity, date)
                     except ValueError:
-                        print(f"Fehler beim Parsen von spend oder quantity für {name}")
+                        print(f"Error when parsing spend or quantity for {name}")
             except ValueError:
-                print(f"Fehler beim Parsen der Transaktionsdaten für {stock}")
+                print(f"Error when parsing spend or quantity for {stock}")
 
     def restart_program(self):
         python = sys.executable
@@ -106,8 +106,8 @@ class CryptoStockManager:
         current_hour = now.tm_hour
         self.stock_update = False
 
-        if current_day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]: #Sunday
-            if current_hour >= 8 and current_hour < 22:
+        if current_day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sunday"] or self.test_mode == 1: #Test_mode
+            if (current_hour >= 8 and current_hour < 22) or self.test_mode == 1: #Test_mode
                 self.stock_update = True
 
     def hundred_day_analysis(self):
@@ -122,13 +122,10 @@ class CryptoStockManager:
         self.schedule_on_weekdays()
         if self.stock_update:
             for item in self.stock_items:
-                if self.test_mode: item.activate_test_mode()
                 self.df_stock_hd.loc[len(self.df_stock_hd)] = item.refresh('100d')
 
         for item in self.crypto_items:
-            if self.test_mode: item.activate_test_mode()
             self.df_crypto_hd.loc[len(self.df_crypto_hd)] = item.refresh('100d')
-        #func.pushover("Hundred day analysis complete")
 
     def hundred_hour_analysis(self): 
         now = time.localtime()
@@ -142,14 +139,10 @@ class CryptoStockManager:
         self.schedule_on_weekdays()
         if self.stock_update:
             for item in self.stock_items:
-                if self.test_mode: item.activate_test_mode()
                 self.df_stock_hh.loc[len(self.df_stock_hh)] = item.refresh('100h')
 
         for item in self.crypto_items:
-            if self.test_mode: item.activate_test_mode()
             self.df_crypto_hh.loc[len(self.df_crypto_hh)] = item.refresh('100h')
-            
-        #func.pushover("Hundred hour analysis complete")
 
     def send_summary(self):
         now = time.localtime()
@@ -208,9 +201,9 @@ manager = CryptoStockManager(config_file_path="config.ini")
 func.pushover("Initialization complete")
 
 start_time = time.time()  # Define start_time here
-manager.hundred_hour_analysis() #Test
-manager.hundred_hour_analysis() #Test
-manager.hundred_day_analysis() #Test
+if manager.test_mode == 1: #Test_mode
+    manager.hundred_hour_analysis() 
+    manager.hundred_day_analysis() 
 
 # Schedule tasks
 schedule.every().hour.do(manager.hundred_hour_analysis)          
@@ -226,10 +219,10 @@ while True:
     except KeyboardInterrupt:
         break
     except configparser.NoSectionError as e:
-        func.pushover(f"Konfigurationsfehler: {e}")
+        func.pushover(f"Configuration error: {e}")
         break
     except configparser.NoOptionError as e:
-        func.pushover(f"Fehlende Option in der Konfiguration: {e}")
+        func.pushover(f"Missing option in the configuration: {e}")
         break
     except Exception as e:
         end_time = time.time()
@@ -240,6 +233,6 @@ while True:
         msg = "Script stopped because of an exception \nRuntime: %(hours)s h %(minutes)s min %(seconds)s sec \n\n%(exception)s" % infos
         func.pushover(msg)
         print(e)
-        time.sleep(600)  # Wartezeit von 10 Minuten vor dem Neustart
+        time.sleep(600)  # Waiting time of 10 minutes before restarting
         manager.restart_program()
 

@@ -25,6 +25,9 @@ one_day_profit_limit = ""
 output_dir = 'plots'
 
 def get_stock(symbol,period):
+    # Fetch historical stock data from Yahoo Finance
+    # Attempts multiple tries if data retrieval fails
+    # Drops unneeded columns before returning the DataFrame
     df = pd.DataFrame()
 
     if period =='1mo':
@@ -37,7 +40,7 @@ def get_stock(symbol,period):
             # Fetch data from Yahoo Finance
             stock = yf.Ticker(symbol)
             df = stock.history(period=period, interval=interval)  # Getting the last 100 days of stock data
-            if not df.empty:  # Überprüfen, ob der Abruf erfolgreich war
+            if not df.empty:  # Check whether the retrieval was successful
                 break
             else:
                 time.sleep(300)
@@ -49,7 +52,7 @@ def get_stock(symbol,period):
    
 
     if 'Date' not in df.columns:
-        df['Date'] = df.index  # Konvertiere den DatetimeIndex in eine Spalte 'Date'
+        df['Date'] = df.index  # Convert the DatetimeIndex into a 'Date' column
 
     df = df.tail(100)
     df['Price'] = df['Close']
@@ -103,6 +106,7 @@ def get_crypto(symbol,params_historical):
     return df
 
 def calc_indicator_fuctions(df):
+   
     # Calculate Fast EMA and Slow EMA
     df['Fast EMA'] = df['Price'].ewm(span=12, adjust=False).mean()
     df['Slow EMA'] = df['Price'].ewm(span=26, adjust=False).mean()
@@ -166,13 +170,13 @@ def plot_and_save(df, symbol, data_type, zero_line=None):
 
     if zero_line is not None:
         if zero_line < df.tail(1)['Price'].values[0]:  
-            ax1.set_facecolor('#d0f0d0') #rot 
+            ax1.set_facecolor('#d0f0d0') #red 
             df['Percentage Deviation'] = df['Price']/zero_line * 100 - 100
         elif zero_line > df.tail(1)['Price'].values[0]:
-            ax1.set_facecolor('#f0d0d0') #grün
+            ax1.set_facecolor('#f0d0d0') #green
             df['Percentage Deviation'] = df['Price']/zero_line * 100 - 100
         else:
-            ax1.set_facecolor('#f0f0f0') #grau
+            ax1.set_facecolor('#f0f0f0') #grey
             df['Percentage Deviation'] = df['Price']/zero_line * 100 - 100
         
         if not (zero_line < df_min or zero_line > df_max):
@@ -181,7 +185,7 @@ def plot_and_save(df, symbol, data_type, zero_line=None):
             ax1.axhline(y=df_min, color='r', linestyle='None', label=f'Buy at {round(zero_line,2)} €')
 
     else:
-        ax1.set_facecolor('#f0f0f0') #grau
+        ax1.set_facecolor('#f0f0f0') #grey
         mean_price = df['Price'].mean()
         df['Percentage Deviation'] = df['Price']/mean_price * 100 - 100
             
@@ -306,9 +310,9 @@ def google_trends(search):
     return df.tail(1)['Interesse'].values[0], df.tail(2)['Interesse'].values[0]
 
 def seven_day_slope_pct(df, current):
-    # Sicherstellen, dass der DataFrame mindestens 8 Zeilen hat, um sowohl aktuelle als auch vorherige 7 Tage zu betrachten
+    # Ensure that the DataFrame has at least 8 rows to view both current and previous 7 days
     if len(df) < 8:
-        raise ValueError("Der DataFrame muss mindestens 8 Zeilen enthalten.")
+        raise ValueError("The DataFrame must contain at least 8 lines.")
     
     y = []
 
@@ -317,24 +321,24 @@ def seven_day_slope_pct(df, current):
     else:
         subset_df = df[-8:-1]
 
-    subset_df.reset_index(inplace=True)  # Bezieht den Index in eine Spalte namens 'index'
+    subset_df.reset_index(inplace=True)  # Includes the index in a column called 'index'
 
-    # Lineare Regression
+    # Linear regression
     try:
         result = linregress(subset_df['index'], subset_df['Price'])
     except Exception as e:
-        raise RuntimeError(f"Fehler bei der linearen Regression: {e}")
+        raise RuntimeError(f"Error in linear regression: {e}")
 
     steigung = result.slope
     y_achsenabschnitt = result.intercept
 
-    # Berechne die vorhergesagten y-Werte für Tag 1 und Tag 7
+    # Calculate the predicted y-values for day 1 and day 7
     y.append(steigung * subset_df['index'].iloc[0] + y_achsenabschnitt)
     y.append(steigung * subset_df['index'].iloc[6] + y_achsenabschnitt)
 
-    # Sicherstellen, dass y[0] nicht 0 ist, um Division durch Null zu verhindern
+    # Ensure that y[0] is not 0 to prevent division by zero
     if y[0] == 0:
-        raise ValueError("Berechnung der Steigung ist nicht möglich, da y[0] gleich 0 ist.")
+        raise ValueError("Calculation of the gradient is not possible as y[0] is 0.")
 
     slope_pct = (y[1] / y[0] - 1)* 100
 

@@ -52,6 +52,7 @@ class crypto_stock:
         self.amount_older_than_one_year = 0
 
     def buy(self, fiat_eur, amount, date):
+        # Record a purchase transaction
         self.buy_balance_eur += fiat_eur
         self.amount_crypto_stock += amount
     
@@ -60,10 +61,6 @@ class crypto_stock:
             new_row = [parsed_date, fiat_eur, amount]
             self.df_buy_history.loc[len(self.df_buy_history)] = new_row
 
-    def sell(self, fiat_eur, amount_crypto_stock):
-        self.buy_balance_eur -= fiat_eur
-        self.amount_crypto_stock -= amount_crypto_stock
-
     def reset_alarm_duplicates(self):
         self.seven_day_alarms.clear() 
 
@@ -71,7 +68,8 @@ class crypto_stock:
         self.test_mode = True
 
     def refresh(self, data_type):
-        
+        # Update the data based on the data_type ('100d' or '100h')
+        # and calculate updated metrics like profit and EMA
         self.data_type = data_type
 
         if self.type == 'crypto':

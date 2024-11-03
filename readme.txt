@@ -10,8 +10,8 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
 - Indicator Calculations:     Calculates indicators such as Fast EMA, Slow EMA, RSI, and VWMA for analysis.
 - Alarms:                     Sends buy/sell signals based on custom thresholds and market trends.
 - Scheduling:                 Configurable scheduling for running hourly and daily analyses.
-- Standard Mode:              In Standard Mode, the system tracks trends and potential buy and sell signals based on the configured indicators.
-- Watch List Mode:            In Watch list mode, the system tracks trends and potential buy signals based on the configured indicators.
+- Portfolio-list:             In Portfolio-list, the system tracks trends and potential buy and sell signals based on the configured indicators.
+- Watch-List:                 In Watch-List, the system tracks trends and potential buy signals based on the configured indicators.
 
 ## Project Structure
 
@@ -20,16 +20,16 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
 - main.py:                  The main script that orchestrates the data analysis process, schedules tasks, and manages notifications.
 - config.ini:               Contains a crypto and stock list, alert limits and the API key. Not included in the GitHub structure. Please create this file with the information below.
 
-## Installation Dependencies
+## Installation
 
-pip install pandas numpy yfinance scipy matplotlib plotly schedule requests pytrends configparser
+1. Install Python 3
+2. Installation Dependencies: pip3 install pandas numpy yfinance scipy matplotlib plotly schedule requests pytrends configparser http.client urllib3
+3. Create config.ini in root, see #Configuration File section
+4. Run the Script: python main.py
 
-## Usage
+Note: I'm using RockPi3 with armbian OS and starting the script over a SSH connection. Over a mapping folder e.g. samba (smb.conf) you can than edit the config.ini.
 
-1. Run the Script:
-   python main.py
-
-2. Get a Pushover message:
+## Get a Pushover message
 
 - Status message:             Infomation about the program start or errors.
 - Potential buy/sell alert:   Review the chart, indicators and external factors to find your decision. The program is only showing a potential you are doing the final decision.
