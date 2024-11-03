@@ -1,4 +1,4 @@
-# Crypto and Stock Alert
+# Crypto and Stock Alert - CaSa
 
 ## Overview
 
@@ -23,11 +23,11 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
 ## Installation
 
 1. Install Python 3
-2. Installation Dependencies: pip3 install pandas numpy yfinance scipy matplotlib plotly schedule requests pytrends configparser http.client urllib3
+2. Install Dependencies: pip3 install pandas numpy yfinance scipy matplotlib plotly schedule requests pytrends configparser http.client urllib3
 3. Create config.ini in root, see #Configuration File section
 4. Run the Script: python main.py
 
-Note: I'm using RockPi3 with armbian OS and starting the script over a SSH connection. Over a mapping folder e.g. samba (smb.conf) you can than edit the config.ini.
+Note: I'm using RockPi3 with armbian OS and starting the script over a SSH connection. Over a mapping folder e.g. samba (smb.conf) you can then edit the config.ini.
 
 ## Get a Pushover message
 
