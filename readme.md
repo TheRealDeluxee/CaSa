@@ -56,10 +56,11 @@ token = YOUR_PUSHOVER_TOKEN
 user = YOUR_PUSHOVER_USER_KEY
 
 [alarm]
-one_day_price_change = 10      # Threshold for a one-day price change alarm (%).
+one_day_price_change = 10       # Threshold for a one-day price change alarm (%).
 seven_day_price_change = 7      # Threshold for a seven-day price change alarm (%).
-one_day_profit_limit = 3        # Profitability threshold for a one-day period.
-previous_alarm_change = -2      # Minimum change required between consecutive alarms (currently inactive).
+previous_alarm_change = 3       # Minimum change required between consecutive alarms.
+one_day_profit_limit = -2       # Profitability threshold for a one-day period (currently inactive).
+test_mode = 0                   # Test mode
 
 [crypto]
 bitcoin = Bitcoin; 1000,0.05,01/01/2022; 1000,0.05,2/01/2022   # Standard Mode: API ID (https://www.coingecko.com/); Display name; Investment in €, Quantity; Buy date in DD/MM/YYYY
