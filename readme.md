@@ -26,7 +26,7 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
 1. Install Python 3.
 2. Install Dependencies: `pip3 install pandas numpy yfinance scipy matplotlib plotly schedule requests pytrends configparser http.client urllib3`
 3. Create `config.ini` in the root directory (see **Configuration File** section).
-4. Run the script: `python main.py`
+4. Run the script: `python3 main.py`
 
 **Note**: This project is tested on a RockPi3 with Armbian OS, initiated over SSH and using a mapped folder for editing the `config.ini`.
 
