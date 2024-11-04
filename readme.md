@@ -66,11 +66,11 @@ bitcoin = Bitcoin; 1000,0.05,01/01/2022; 1000,0.05,2/01/2022   # Standard Mode: 
 matic-network = Polygon; 1 , 1, 1                              # Watch list mode
 
 [stocks]
-AAPL = Apple; 1000,10,01/01/2022       # Standard Mode: EURO-Symbol (https://finance.yahoo.com/); Display name; Investment in €, Quantity, Buy date in DD/MM/YYYY
+APC.DE = Apple; 1000,10,01/01/2022       # Standard Mode: EURO-Symbol (https://finance.yahoo.com/); Display name; Investment in €, Quantity, Buy date in DD/MM/YYYY
 LHA.DE = Lufthansa; 1, 1, 1            # Watch list mode
 ```
 
-**Note**: Use only stock symbols with the Euro currently.
+**Note**: Use only stock symbols with the Euro currently (e.g. APC.DE and AMZ.DE).
 
 ## Dependencies
 
