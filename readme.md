@@ -58,8 +58,8 @@ user = YOUR_PUSHOVER_USER_KEY
 [alarm]
 one_day_price_change = 10       # Threshold for a one-day price change alarm (%).
 seven_day_price_change = 7      # Threshold for a seven-day price change alarm (%).
-previous_alarm_change = 3       # Minimum change required between consecutive alarms.
-one_day_profit_limit = -2       # Profitability threshold for a one-day period (currently inactive).
+previous_alarm_change = 3       # Minimum change required between consecutive alarms (%).
+one_day_profit_limit = -2       # Profitability threshold for a one-day period (%). #currently inactive
 test_mode = 0                   # Test mode
 
 [crypto]
