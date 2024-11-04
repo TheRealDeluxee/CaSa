@@ -70,6 +70,8 @@ AAPL = Apple; 1000,10,01/01/2022       # Standard Mode: EURO-Symbol (https://fin
 LHA.DE = Lufthansa; 1, 1, 1            # Watch list mode
 ```
 
+**Note**: Use only stock symbols with the Euro currently.
+
 ## Dependencies
 
 - **Python Libraries**: `pandas`, `numpy`, `yfinance`, `scipy`, `matplotlib`, `plotly`, `schedule`, `requests`, `pytrends`, `configparser`, `http.client`, `urllib3`
