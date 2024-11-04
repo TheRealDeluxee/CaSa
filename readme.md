@@ -28,7 +28,7 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
 3. Create `config.ini` in the root directory (see **Configuration File** section).
 4. Run the script: `python main.py`
 
-**Note**: This project is tested on a RockPi3 with Armbian OS and initiated over SSH. Using a mapped folder (e.g., Samba with `smb.conf`) allows easy editing of `config.ini`.
+**Note**: This project is tested on a RockPi3 with Armbian OS, initiated over SSH and using a mapped folder for editing the `config.ini`.
 
 ## Get a Pushover Message
 
@@ -39,7 +39,7 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
   - **RSI14**: 14-day Relative Strength Index, indicating if an asset is overbought or oversold.
   - **MOM10**: 10-day Momentum indicator slope, reflecting price change speed.
   - **VWMA20**: 20-day Volume Weighted Moving Average slope, adjusting price trends by trading volume.
-  - **Amount >1 year**: Asset quantity held for over a year, relevant for long-term positions.
+  - **Amount >1 year**: Asset quantity held for over a year, relevant for tax free crypto transactions (like in Germany, Portugal, Belgium and Luxembourg).
   - **# [Alert type]**: Specifies alert type, like “#Cross-EMA” for an EMA crossover or “#100-Minimum” for a 100-day low.
   - **# Technical analysis**: Provides additional references or links for deeper insights.
 - **Daily summary**: Summary of all crypto and stock items, sorted by rating (indicator count suggesting a buy).
