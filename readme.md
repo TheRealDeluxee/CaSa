@@ -44,6 +44,8 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
   - **# Technical analysis**: Provides additional references or links for deeper insights.
 - **Daily summary**: Summary of all crypto and stock items, sorted by rating (indicator count suggesting a buy).
 
+![Project Overview](example_msg.jpg)
+
 ## Configuration File (config.ini)
 
 The `config.ini` file should contain sections like `pushover`, `alarm`, `crypto`, and `stocks`. Here’s an example configuration:
