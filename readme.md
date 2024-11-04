@@ -34,11 +34,11 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
 
 - **Status message**: Provides information about the program start or errors.
 - **Potential buy/sell alert**: Alerts for review based on indicators; decision-making is up to the user.
-  - **Price**: 7-day price slope for context.
-  - **EMA**: Slope of the Exponential Moving Average indicator.
+  - **Price'**: 7-day price slope for context.
+  - **EMA'**: Slope of the Exponential Moving Average indicator.
   - **RSI14**: 14-day Relative Strength Index, indicating if an asset is overbought or oversold.
-  - **MOM10**: 10-day Momentum indicator slope, reflecting price change speed.
-  - **VWMA20**: 20-day Volume Weighted Moving Average slope, adjusting price trends by trading volume.
+  - **MOM10'**: 10-day Momentum indicator slope, reflecting price change speed.
+  - **VWMA20'**: 20-day Volume Weighted Moving Average slope, adjusting price trends by trading volume.
   - **Amount >1 year**: Asset quantity held for over a year, relevant for tax free crypto transactions (like in Germany, Portugal, Belgium and Luxembourg).
   - **# [Alert type]**: Specifies alert type, like “#Cross-EMA” for an EMA crossover or “#100-Minimum” for a 100-day low.
   - **# Technical analysis**: Provides additional references or links for deeper insights.
