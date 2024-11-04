@@ -62,11 +62,11 @@ one_day_profit_limit = 3        # Profitability threshold for a one-day period.
 previous_alarm_change = -2      # Minimum change required between consecutive alarms (currently inactive).
 
 [crypto]
-bitcoin;Bitcoin;1000,0.05,01/01/2022   # Standard Mode: API ID (https://www.coingecko.com/); Display name; Investment in €, Quantity; Buy date in DD/MM/YYYY
-matic-network = Polygon; 1 , 1, 1      # Watch list mode
+bitcoin = Bitcoin; 1000,0.05,01/01/2022; 1000,0.05,2/01/2022   # Standard Mode: API ID (https://www.coingecko.com/); Display name; Investment in €, Quantity; Buy date in DD/MM/YYYY
+matic-network = Polygon; 1 , 1, 1                              # Watch list mode
 
 [stocks]
-AAPL;Apple;1000,10,01/01/2022          # Standard Mode: EURO-Symbol (https://finance.yahoo.com/); Display name; Investment in €, Quantity, Buy date in DD/MM/YYYY
+AAPL = Apple; 1000,10,01/01/2022       # Standard Mode: EURO-Symbol (https://finance.yahoo.com/); Display name; Investment in €, Quantity, Buy date in DD/MM/YYYY
 LHA.DE = Lufthansa; 1, 1, 1            # Watch list mode
 ```
 
