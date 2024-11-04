@@ -73,7 +73,7 @@ LHA.DE = Lufthansa; 1, 1, 1            # Watch list mode
 ## Dependencies
 
 - **Python Libraries**: `pandas`, `numpy`, `yfinance`, `scipy`, `matplotlib`, `plotly`, `schedule`, `requests`, `pytrends`, `configparser`, `http.client`, `urllib3`
-- **External APIs**: Requires access to Pushover (account needed), CoinGecko, and Yahoo Finance APIs.
+- **External APIs**: Requires access to Pushover (free account needed), CoinGecko, and Yahoo Finance APIs.
 
 ## License
 
