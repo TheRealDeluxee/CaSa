@@ -56,7 +56,7 @@ While it’s functional and stable, there’s still plenty of room for growth. C
   - **# Technical analysis**: Provides additional references or links for deeper insights.
 - **Daily summary**: Summary of all crypto and stock items, sorted by rating (indicator count suggesting a buy).
 
-![Project Overview](example_msg.jpg)
+![Project Overview](example_msg.png)
 
 ## Configuration File (config.ini)
 
