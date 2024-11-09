@@ -101,9 +101,3 @@ This project is licensed under the MIT License.
 - [Yahoo Finance](https://finance.yahoo.com) – Provides stock market data, trends, and financial news.
 - [Rock Pi](https://rockpi.org/) – A robust single-board computer for running this project efficiently.
 - [Armbian OS](https://www.armbian.com/) – A lightweight operating system for ARM-based devices, perfect for deploying CaSa.
-
-
-
-
-
-4o
