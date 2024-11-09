@@ -5,6 +5,16 @@
 
 This project provides a Python-based system for analyzing and monitoring cryptocurrencies and stocks. It uses indicators like Moving Averages, RSI, and EMA to evaluate trends and alert users on significant market conditions. The system can track and visualize data, calculate profits, and send notifications using Pushover.
 
+## Why do I need CaSa?
+
+I’ve always wanted to invest in stocks and cryptocurrencies, but I was held back by the fear of missing rapid market changes and, especially with crypto, the risk of losing significant money. Constantly monitoring prices felt overwhelming and stressful.
+
+Moreover, I was never fully satisfied with the existing apps and their features for tracking price changes. Most of them offer only basic alert thresholds, while more advanced functionalities often come with a price tag.
+
+That’s why I decided to take matters into my own hands and developed SaCa—a free, open-source program now available on GitHub. SaCa is reliable and already includes several essential features, making it an excellent starting point for anyone facing the same challenges I did.
+
+While it’s functional and stable, there’s still plenty of room for growth. Check out the "New Feature Idea List" for planned improvements and let’s build something great together!
+
 ## Features
 
 - **Automatic Data Retrieval**: Fetches crypto data from CoinGecko and stock data from Yahoo Finance.
@@ -16,7 +26,7 @@ This project provides a Python-based system for analyzing and monitoring cryptoc
 
 ## Project Structure
 
-- `classes.py`: Contains the `crypto_stock` class, which manages individual crypto or stock entities, stores transaction data, and processes alarms.
+- `classes.py`: Contains the `crypto_stock` class, which manages individual crypto or stock entities, stores transaction, and alarm data.
 - `func.py`: Utility functions for data retrieval, indicator calculations, alarm handling, and image generation.
 - `main.py`: The main script that orchestrates the data analysis process, schedules tasks, and manages notifications.
 - `config.ini`: Contains a crypto and stock list, alert limits, and the API key. This file is not included in the GitHub structure and must be created manually with the configuration details below.
