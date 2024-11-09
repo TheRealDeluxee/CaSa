@@ -11,7 +11,7 @@ I’ve always wanted to invest in stocks and cryptocurrencies, but I was held ba
 
 Moreover, I was never fully satisfied with the existing apps and their features for tracking price changes. Most of them offer only basic alert thresholds, while more advanced functionalities often come with a price tag.
 
-That’s why I decided to take matters into my own hands and developed SaCa—a free, open-source program now available on GitHub. SaCa is reliable and already includes several essential features, making it an excellent starting point for anyone facing the same challenges I did.
+That’s why I decided to take matters into my own hands and developed CaSa a free, open-source program now available on GitHub. CaSa is reliable and already includes several essential features, making it an excellent starting point for anyone facing the same challenges I did.
 
 While it’s functional and stable, there’s still plenty of room for growth. Check out the "New Feature Idea List" for planned improvements and let’s build something great together!
 
@@ -100,7 +100,7 @@ This project is licensed under the MIT License.
 - [CoinGecko](https://www.coingecko.com) – A comprehensive cryptocurrency market tracker used for data retrieval.
 - [Yahoo Finance](https://finance.yahoo.com) – Provides stock market data, trends, and financial news.
 - [Rock Pi](https://rockpi.org/) – A robust single-board computer for running this project efficiently.
-- [Armbian OS](https://www.armbian.com/) – A lightweight operating system for ARM-based devices, perfect for deploying SaCa.
+- [Armbian OS](https://www.armbian.com/) – A lightweight operating system for ARM-based devices, perfect for deploying CaSa.
 - [GitHub Repository](https://github.com) – *(Add your repository link here)* Access the source code and contribute to the project.
 
 
