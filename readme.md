@@ -91,3 +91,18 @@ LHA.DE = Lufthansa; 1, 1, 1            # Watch list
 ## License
 
 This project is licensed under the MIT License.
+
+## Links
+
+- [Pushover](https://pushover.net/) – Notification service for sending alerts directly to your devices.
+- [CoinGecko](https://www.coingecko.com) – A comprehensive cryptocurrency market tracker used for data retrieval.
+- [Yahoo Finance](https://finance.yahoo.com) – Provides stock market data, trends, and financial news.
+- [Rock Pi](https://rockpi.org/) – A robust single-board computer for running this project efficiently.
+- [Armbian OS](https://www.armbian.com/) – A lightweight operating system for ARM-based devices, perfect for deploying SaCa.
+- [GitHub Repository](https://github.com) – *(Add your repository link here)* Access the source code and contribute to the project.
+
+
+
+
+
+4o
