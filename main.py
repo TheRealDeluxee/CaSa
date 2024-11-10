@@ -19,16 +19,21 @@ class CryptoStockManager:
         self.df_stock_hd = pd.DataFrame(columns=['Name', 'Piece [€]', 'Profit [€]', 'Profit [%]', '7 days [%]', '1 day [%]', 'dEMA [%]', 'Rating'])
         self.df_crypto_hh = pd.DataFrame(columns=['Name', 'Piece [€]', 'Profit [€]', 'Profit [%]', '7 Hours [%]', '1 Hour [%]', 'dEMA [%]', 'Rating'])
         self.df_stock_hh = pd.DataFrame(columns=['Name', 'Piece [€]', 'Profit [€]', 'Profit [%]', '7 Hours [%]', '1 Hour [%]', 'dEMA [%]', 'Rating'])
-        self.crypto_items = []
-        self.stock_items = []
+        self.crypto_items_hh = []
+        self.crypto_items_hd = []
+        self.stock_items_hh = []
+        self.stock_items_hd = []
+
         self.stock_update = False
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)
         self.load_config()
 
     def load_config(self):
-        self.crypto_items = []
-        self.stock_items = []
+        self.crypto_items_hh = []
+        self.crypto_items_hd = []
+        self.stock_items_hh = []
+        self.stock_items_hd = []
         config = configparser.ConfigParser()
         if not config.read(self.config_file_path):
             raise FileNotFoundError(f"The INI file '{self.config_file_path}' could not be found or loaded.")
@@ -61,7 +66,8 @@ class CryptoStockManager:
             try:
                 name, transaction_data = transactions.split(";", 1)
                 crypto_obj = cl.crypto_stock(crypto, name.strip(), 'crypto', self.previous_alarm_change)
-                self.crypto_items.append(crypto_obj)
+                self.crypto_items_hh.append(crypto_obj)
+                self.crypto_items_hd.append(crypto_obj)
                 
                 for transaction in transaction_data.split(";"):
                     try:
@@ -80,7 +86,8 @@ class CryptoStockManager:
             try:
                 name, transaction_data = transactions.split(";", 1)
                 stock_obj = cl.crypto_stock(stock, name.strip(), 'stock', self.previous_alarm_change)
-                self.stock_items.append(stock_obj)
+                self.stock_items_hh.append(stock_obj)
+                self.stock_items_hd.append(stock_obj)
 
                 for transaction in transaction_data.split(";"):
                     try:
@@ -121,10 +128,10 @@ class CryptoStockManager:
 
         self.schedule_on_weekdays()
         if self.stock_update:
-            for item in self.stock_items:
+            for item in self.stock_items_hd:
                 self.df_stock_hd.loc[len(self.df_stock_hd)] = item.refresh('100d')
 
-        for item in self.crypto_items:
+        for item in self.crypto_items_hd:
             self.df_crypto_hd.loc[len(self.df_crypto_hd)] = item.refresh('100d')
 
     def hundred_hour_analysis(self): 
@@ -138,10 +145,10 @@ class CryptoStockManager:
 
         self.schedule_on_weekdays()
         if self.stock_update:
-            for item in self.stock_items:
+            for item in self.stock_items_hh:
                 self.df_stock_hh.loc[len(self.df_stock_hh)] = item.refresh('100h')
 
-        for item in self.crypto_items:
+        for item in self.crypto_items_hh:
             self.df_crypto_hh.loc[len(self.df_crypto_hh)] = item.refresh('100h')
 
     def send_summary(self):
