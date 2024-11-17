@@ -133,21 +133,21 @@ def calc_indicator_fuctions(df):
 
 
 def calculate_rsi(df, window=14):
-    delta = df['Price'].diff()
-    gain = delta.where(delta > 0, 0)
-    loss = -delta.where(delta < 0, 0)
+    delta = df['Price'].diff()  # Preisänderungen berechnen
+    gain = delta.where(delta > 0, 0)  # Gewinne (positive Änderungen)
+    loss = -delta.where(delta < 0, 0)  # Verluste (negative Änderungen)
 
-    avg_gain = gain.rolling(window=window, min_periods=1).mean()[:window+1]
-    avg_loss = loss.rolling(window=window, min_periods=1).mean()[:window+1]
+    # Gleitender Durchschnitt für Gewinne und Verluste
+    avg_gain = gain.rolling(window=window, min_periods=window).mean()
+    avg_loss = loss.rolling(window=window, min_periods=window).mean()
 
-    # Use the formula for the rest of the values
-    for i in range(window + 1, len(gain)):
-        avg_gain.loc[i] = (avg_gain.loc[i - 1] * (window - 1) + gain.loc[i]) / window
-        avg_loss.loc[i] = (avg_loss.loc[i - 1] * (window - 1) + loss.loc[i]) / window
-
+    # Berechnung von RSI
     rs = avg_gain / avg_loss
     rsi = 100 - (100 / (1 + rs))
+
+    # Rückgabe von RSI
     return rsi
+
 
 def calculate_momentum(df, window=10):
     momentum = df['Price'] - df['Price'].shift(window)
@@ -223,6 +223,10 @@ def plot_and_save(df, symbol, data_type, zero_line=None):
 
     output_path = os.path.join(output_dir, symbol + ".png")
     plt.savefig(output_path, bbox_inches='tight')
+
+    #output_path2 = os.path.join(output_dir, symbol + ".csv") #only for test data
+    #df.to_csv(output_path2, index=False)  # Speichert ohne Index #only for test data
+
     matplotlib.pyplot.close()
 
 
