@@ -96,7 +96,7 @@ This project is licensed under the MIT License.
 
 ## Links
 
-- [Pushover](https://pushover.net/) – Notification service for sending alerts directly to your devices.
+- [Pushover](https://pushover.net/) – Notification service for sending alerts directly to your devices. Available on Apple App Store and Google Play Store.
 - [CoinGecko](https://www.coingecko.com) – A comprehensive cryptocurrency market tracker used for data retrieval.
 - [Yahoo Finance](https://finance.yahoo.com) – Provides stock market data, trends, and financial news.
 - [Rock Pi](https://rockpi.org/) – A robust single-board computer for running this project efficiently.
